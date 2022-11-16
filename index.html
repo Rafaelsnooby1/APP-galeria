@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    </head>
+    <style>
+        *{margin:0;padding:0;box-sizing: border-box;}
+        .header{
+            background-color:blueviolet;
+            text-align: center;
+            width:100%;
+            color:white;
+            font-size: 26px;
+            padding:20px 0;
+        }
+
+        img{
+            max-width:100%;
+            width:90%;
+            display: block;
+            margin:10px auto;
+        }
+
+        .btn-load{padding:30px 0;}
+
+        button{
+          background-color: blueviolet;
+          width:200px;
+          height:40px;
+          color:white;
+          cursor: pointer;
+        }
+
+    </style>
+    <body>
+       <div class="header">
+           Aplicativo Galeria
+       </div>
+
+       <div id="galeria" class="galeria"></div><!--galeria-->
+
+       <div class="btn-load"><button id="carregar-mais">Carregar Mais!</button></div>
+
+       <script>
+          var galeria = document.getElementById('galeria');
+          var quantidadeImagensIniciais = 1;
+
+          var controle = 0;
+          
+
+          var carregarMais = document.getElementById('carregar-mais');
+
+           for(var i = 0; i < quantidadeImagensIniciais; i++){
+                galeria.innerHTML+='<img src="https://picsum.photos/400/250?random=`+i+`" />';
+               
+           }
+
+           carregarMais.addEventListener('click',()=>{
+              
+              for(var i = 0; i < quantidadeImagensIniciais; i++){
+                
+                  let image = document.createElement('img');
+                  image.src = 'https://picsum.photos/400/250?random='+controle;
+                  carregarMais.innerHTML = "carregando...";
+                  image.addEventListener('load',function(){
+                    carregarMais.innerHTML = "Carregar Mais!";
+                  })
+                  galeria.appendChild(image);
+
+                  controle++;
+                
+              }
+           })
+
+
+        </script>
+
+    </body>
+</html>
